@@ -2,9 +2,7 @@
 var highScoreEl = document.getElementById("high-scores")
 var welcomeEl = document.getElementById("welcome");
 var startQuiz = document.getElementById("start-quiz");
-
 var timerEl = document.getElementById("timer-count");
-
 var questionEl = document.getElementById("questions")
 var questionTitle = document.getElementById("question-title");
 var choice1 = document.getElementById("choice1");
@@ -13,15 +11,15 @@ var choice3 = document.getElementById("choice3");
 var choice4 = document.getElementById("choice4");
 var lineBreak = document.getElementById("lineBreak");
 var resultCheck = document.getElementById("resultCheck");
-
 var scoreEl = document.getElementById("scores");
 var finalScore = document.getElementById("final-score");
 var playerInitials = document.getElementById("player-initials");
 var saveScoreBtn = document.getElementById("submit-score");
-
 var homeBtn = document.getElementById("go-back-btn");
-
 var leaderBoardEl = document.getElementById("board");
+var highScoreList = document.getElementById("highScoresList");
+var clearHighScores = document.getElementById("clear-high-scores-btn");
+var goBack = document.getElementById("go-back-btn");
 var gameOverScreen = document.getElementById(".gameOver");
 
 

@@ -1,11 +1,18 @@
 #high-scores{
-    font-size: 20px;
+    font-size: 25px;
     margin-right: 0;
+    color: blueviolet;
+    font-weight: bolder;
+}
+body{
+    background-color: lightgray;
+}
+#time-section{
+    font-size: 25px;
+    font-weight: bolder;
+    color: blueviolet;
 }
 
-#time-section{
-    font-size: 20px;
-}
 header{
     padding: 30px;
     background-color: lightblue;
@@ -15,17 +22,29 @@ header{
     padding: auto;
     font-size: 20px;
     font-weight: bold;
+    color: blue;
 }
 
 .btn{
     margin-bottom:20px;
     margin-left: 20px;
     margin-top: 20px;
+    color: coral;
+    font-weight: bolder;
+    font-size: 20px;
+    border-radius: 3px;
+    background-color: lightblue;
 }
-
+hr {
+    margin: 20px;
+    border: navajowhite;
+    height: 3px;
+    background-color: lightblue;
+}
 footer{
     margin: auto;
     font-weight: bold;
     font-size: 20px;
+    color: blue;
     
 }
