@@ -1,5 +1,6 @@
 //variables for reference elements
 var highScoreEl = document.getElementById("high-scores")
+var vewHighcoreEl = document.getElementById("vewHighScores")
 var welcomeEl = document.getElementById("welcome");
 var startQuiz = document.getElementById("start-quiz");
 var timerEl = document.getElementById("timer-count");
@@ -20,30 +21,27 @@ var leaderBoardEl = document.getElementById("board");
 var highScoreList = document.getElementById("highScoresList");
 var clearHighScores = document.getElementById("clear-high-scores-btn");
 var goBack = document.getElementById("go-back-btn");
-var gameOverScreen = document.getElementById(".gameOver");
 
 
 // script variables
-qIndex = 0;
-userScore = 0;
-
+ var qIndex = 0;
+ var userScore = 0;
+ var gameCompleted = false;
 
 //Set countdown timer to 90 seconds, start countdown function
 var timeLeft = 90;
-var time;
 function updateTimer() {
      time = setInterval(function () {
 //when timer reaches zero, clear interval function and display game over
         timeLeft--;
         timerEl.textContent = timeLeft + " seconds left";
-        if (timeLeft === 0) {
+        if (timeLeft === 0 || gameCompleted) {
                clearInterval(time);
-               displayFinalScore();
+               displayFinalScore()
           }
      }, 1000);
 }
 
-//quiz questions
 
 // using constant to define the questions to keep it persistent throughout the script
 const questions = [
@@ -107,6 +105,11 @@ choice4.addEventListener("click", function(){
 });
 saveScoreBtn.addEventListener("click",saveScoretoStorage);
 
+goBack.addEventListener("click",welcome);
+clearHighScores.addEventListener("click", function(){
+    window.localStorage.removeItem("storedScores");
+    highScoreList.innerHTML = "";
+})
 homeBtn.addEventListener("click", function(){
     window.location.reload()
 })
@@ -124,12 +127,17 @@ function welcome(){
     questionEl.style.display = "none";
     scoreEl.style.display = "none";
     leaderBoardEl.style.display = "none";
+    if (highScoreEl.style.display === "none"){
+        highScoreEl.style.display = "block";
+
+    };
 
     var t = document.getElementById("welcome-title");
     var tx = document.getElementById("welcome-text");
     t.textContent = "Coding-Quiz-Game";
     tx.textContent = "Get Ready";
     startQuiz.textContent = "Start Quiz";
+    timerEl.textContent = 90;
 }
 
 function initiateQuiz(){
@@ -142,6 +150,10 @@ function initiateQuiz(){
     resultCheck.style.display = "none";
     startquestions();
     updateTimer();
+    qIndex =0;
+    userScore = 0;
+    gameCompleted = false;
+    startTimer();
 }
 
 function startquestions(){
@@ -160,19 +172,19 @@ function checkAnswer(pick){
         resultCheck.textContent = "Correct!";         
         userScore++;
     } else {
-
+        resultCheck.textContent = "Wrong!";
         timeLeft -= 15;
 
-        if(timeLeft < 0){
+        if(timeLeft <= 0){
             timeLeft = 0;
-        }
-        resultCheck.textContent = "Wrong!";    
+        }  
     }
     qIndex++;
     //console.log(qIndex);
     if (qIndex < questions.length){
         startquestions();
     } else {
+        gameCompleted = true;
         clearInterval(time)
         displayFinalScore();
     }
@@ -189,13 +201,13 @@ function displayFinalScore(){
 }
 
 function saveScoretoStorage(){
-    //if (playerInitials === ""){
-    //    alert("Please enter your initials in order to make it to the leader board");
-    //}
+    if (playerInitials.value === ""){
+       alert("Please enter your initials in order to make it to the leader board");
+    }
     console.log(playerInitials.value);
     console.log(userScore);
     //var addScores = function (playerInitials, userScore) {
-        // retrieve it (Or create a blank array if there isn't any info saved yet),
+        //retrieve it (Or create a blank array if there isn't any info saved yet),
         var savedScores = JSON.parse(localStorage.getItem('storedScores')) || [];
         // add to it,
         savedScores.push({playerInitals: playerInitials.value, userScore: userScore});
@@ -212,4 +224,18 @@ function leaderBoard(){
     questionEl.style.display = "none";
     scoreEl.style.display = "none";
     leaderBoardEl.style.display = "block";
+    highScoreEl.style.display = "none";
+    var savedScores = localStorage.getItem("storeScores");
+
+    if (savedScores != null){
+        var savedScoresToList = [];
+        highScoreList.innerHTML = "";
+        savedScoresToList = JSON.parse(savedScores);
+        for (i=0; i< savedScoresToList.length; i++){
+            var listResults = document.createElement("li");
+            listResults.textContent = savedScoresToList[i].playerInitals+ ":  "+savedScoresToList[i].userScore;
+            highScoreList.appendChild(listResults);
+        }   
+
+    }
 }
