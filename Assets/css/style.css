@@ -1,4 +1,7 @@
-#high-scores,
+#high-scores{
+    font-size: 20px;
+    margin-right: 0;
+}
 
 #time-section{
     font-size: 20px;
@@ -7,6 +10,11 @@ header{
     padding: 30px;
     background-color: lightblue;
     font-weight: bolder; 
+}
+#welcome {
+    padding: auto;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .btn{
