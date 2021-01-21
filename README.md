@@ -16,7 +16,7 @@ Once the timer ends OR all the questions have been displayed, the screen will di
 
 Upon inputting the initials and clicking submit, the input will be validated and the initials/score pair will be stored in local storage.
 
-The user will then be sent to a High Scores page (this data will be retrieved from local storage). The user will also be presented with two buttons, one to "Go Back" the quiz and one to "Clear High Score" and remove it from local storage.
+The user will then be sent to a High Scores page that will display the high scores with the initials (This data will be retrieved from local storage). The user will also be presented with two buttons, one to Go Back to the quiz and one to clear the high score and remove it from local storage.
 
 This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that I write. It will have a clean, polished, and responsive user interface. 
 
